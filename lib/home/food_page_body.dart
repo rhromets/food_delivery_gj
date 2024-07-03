@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 // ignore: depend_on_referenced_packages
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:food_delivery_gj/utils/colors.dart';
+import 'package:food_delivery_gj/utils/dimentions.dart';
 import 'package:food_delivery_gj/widgets/widgets.dart';
 
 class FoodPageBody extends StatefulWidget {
@@ -17,7 +18,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
   );
   var _currPageValue = 0.0;
   final double _scaleFactor = 0.8;
-  final double _height = 220;
+  final double _height = Dimensions.pageViewContainer;
 
   @override
   void initState() {
@@ -40,7 +41,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
     return Column(
       children: [
         SizedBox(
-          height: 320,
+          height: Dimensions.pageView,
           child: PageView.builder(
             controller: pageController,
             itemCount: 5,
@@ -93,10 +94,10 @@ class _FoodPageBodyState extends State<FoodPageBody> {
       child: Stack(
         children: [
           Container(
-            height: 220,
-            margin: const EdgeInsets.symmetric(horizontal: 10),
+            height: Dimensions.pageViewContainer,
+            margin: EdgeInsets.symmetric(horizontal: Dimensions.width10),
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(30),
+              borderRadius: BorderRadius.circular(Dimensions.radius30),
               color: index.isEven
                   ? const Color(0xFF69c5df)
                   : const Color(0xFF9294cc),
@@ -109,13 +110,13 @@ class _FoodPageBodyState extends State<FoodPageBody> {
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
-              height: 130,
-              margin: const EdgeInsets.symmetric(
-                horizontal: 30,
-                vertical: 40,
+              height: Dimensions.pageViewTextContainer,
+              margin: EdgeInsets.symmetric(
+                horizontal: Dimensions.width30,
+                vertical: Dimensions.height40,
               ),
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(Dimensions.radius20),
                   color: Colors.white,
                   boxShadow: const [
                     BoxShadow(
@@ -133,13 +134,13 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                     ),
                   ]),
               child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 15),
+                padding: EdgeInsets.symmetric(horizontal: Dimensions.width15),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const BigText(text: 'Chiness Side'),
-                    const SizedBox(height: 10),
+                    SizedBox(height: Dimensions.height10),
                     Row(
                       children: [
                         Wrap(
@@ -154,15 +155,15 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                             ),
                           ],
                         ),
-                        const SizedBox(width: 10),
+                        SizedBox(width: Dimensions.width10),
                         const SmallText(text: '4.5'),
-                        const SizedBox(width: 10),
+                        SizedBox(width: Dimensions.width10),
                         const SmallText(text: '1287'),
-                        const SizedBox(width: 10),
+                        SizedBox(width: Dimensions.width10),
                         const SmallText(text: 'comments'),
                       ],
                     ),
-                    const SizedBox(height: 20),
+                    SizedBox(height: Dimensions.height20),
                     const Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
