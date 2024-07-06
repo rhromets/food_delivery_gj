@@ -240,55 +240,10 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                   ]),
               child: Container(
                 padding: EdgeInsets.symmetric(horizontal: Dimensions.width15),
-                child: Column(
+                child: const Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const BigText(text: 'Chiness Side'),
-                    SizedBox(height: Dimensions.height10),
-                    Row(
-                      children: [
-                        Wrap(
-                          children: [
-                            ...List.generate(
-                              5,
-                              (index) => const Icon(
-                                Icons.star,
-                                color: AppColors.mainColor,
-                                size: 15,
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(width: Dimensions.width10),
-                        const SmallText(text: '4.5'),
-                        SizedBox(width: Dimensions.width10),
-                        const SmallText(text: '1287'),
-                        SizedBox(width: Dimensions.width10),
-                        const SmallText(text: 'comments'),
-                      ],
-                    ),
-                    SizedBox(height: Dimensions.height20),
-                    const Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        IconAndTxtWidget(
-                          icon: Icons.circle_sharp,
-                          text: 'Normal',
-                          iconColor: AppColors.iconColor1,
-                        ),
-                        IconAndTxtWidget(
-                          icon: Icons.location_on,
-                          text: '1.7km',
-                          iconColor: AppColors.mainColor,
-                        ),
-                        IconAndTxtWidget(
-                          icon: Icons.access_time_rounded,
-                          text: '32min',
-                          iconColor: AppColors.iconColor2,
-                        ),
-                      ],
-                    )
+                    AppColumn(text: 'Chinese Side'),
                   ],
                 ),
               ),
