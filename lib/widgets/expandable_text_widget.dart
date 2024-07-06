@@ -68,7 +68,8 @@ class _ExpandableTextWidgetState extends State<ExpandableTextWidget> {
                       ),
                     ],
                   ),
-                )
+                ),
+                SizedBox(height: Dimensions.height45),
               ],
             ),
     );
