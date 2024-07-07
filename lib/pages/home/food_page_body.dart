@@ -3,6 +3,7 @@ import 'package:dots_indicator/dots_indicator.dart';
 import 'package:food_delivery_gj/controllers/popular_product_controller.dart';
 import 'package:food_delivery_gj/controllers/recommended_product_controller.dart';
 import 'package:food_delivery_gj/models/products_model.dart';
+import 'package:food_delivery_gj/routes/route_helper.dart';
 import 'package:food_delivery_gj/utils/app_constants.dart';
 import 'package:food_delivery_gj/utils/colors.dart';
 import 'package:food_delivery_gj/utils/dimentions.dart';
@@ -49,13 +50,18 @@ class _FoodPageBodyState extends State<FoodPageBody> {
           return popularProducts.isLoaded
               ? SizedBox(
                   height: Dimensions.pageView,
-                  child: PageView.builder(
-                    controller: pageController,
-                    itemCount: popularProducts.popularProducList.length,
-                    itemBuilder: (context, position) {
-                      return _buildPageItem(position,
-                          popularProducts.popularProducList[position]);
+                  child: GestureDetector(
+                    onTap: () {
+                      Get.toNamed(RouteHelper.popularFood);
                     },
+                    child: PageView.builder(
+                      controller: pageController,
+                      itemCount: popularProducts.popularProducList.length,
+                      itemBuilder: (context, position) {
+                        return _buildPageItem(position,
+                            popularProducts.popularProducList[position]);
+                      },
+                    ),
                   ),
                 )
               : Container(
