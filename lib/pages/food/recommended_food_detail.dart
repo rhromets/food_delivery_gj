@@ -1,24 +1,37 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery_gj/controllers/recommended_product_controller.dart';
+import 'package:food_delivery_gj/routes/route_helper.dart';
+import 'package:food_delivery_gj/utils/app_constants.dart';
 import 'package:food_delivery_gj/utils/colors.dart';
 import 'package:food_delivery_gj/utils/dimentions.dart';
 import 'package:food_delivery_gj/widgets/widgets.dart';
+import 'package:get/get.dart';
 
 class RecommendedFoodDetail extends StatelessWidget {
-  const RecommendedFoodDetail({super.key});
+  final int pageId;
+  const RecommendedFoodDetail({super.key, required this.pageId});
 
   @override
   Widget build(BuildContext context) {
+    var product =
+        Get.find<RecommendedProductController>().recommendedProductList[pageId];
     return Scaffold(
       backgroundColor: Colors.white,
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
+            automaticallyImplyLeading: false,
             toolbarHeight: 70,
-            title: const Row(
+            title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                AppIcon(icon: Icons.clear),
-                AppIcon(icon: Icons.shopping_cart_outlined),
+                GestureDetector(
+                  onTap: () {
+                    Get.toNamed(RouteHelper.getInitial());
+                  },
+                  child: const AppIcon(icon: Icons.clear),
+                ),
+                const AppIcon(icon: Icons.shopping_cart_outlined),
               ],
             ),
             bottom: PreferredSize(
@@ -35,7 +48,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                   ),
                 ),
                 child: BigText(
-                  text: 'Chinese Side',
+                  text: '${product.name}',
                   size: Dimensions.font26,
                 ),
               ),
@@ -44,8 +57,8 @@ class RecommendedFoodDetail extends StatelessWidget {
             backgroundColor: AppColors.yellowColor,
             expandedHeight: 300,
             flexibleSpace: FlexibleSpaceBar(
-              background: Image.asset(
-                'assets/images/food0.png',
+              background: Image.network(
+                '${AppConstants.BASE_URL}${AppConstants.UPLOAD_URL}${product.img}',
                 width: double.maxFinite,
                 fit: BoxFit.cover,
               ),
@@ -58,9 +71,9 @@ class RecommendedFoodDetail extends StatelessWidget {
                   margin: EdgeInsets.symmetric(
                     horizontal: Dimensions.width20,
                   ),
-                  child: const ExpandableTextWidget(
-                      text:
-                          'Chicken marinated in a spiced yoghurt is placed in a large pot, then layered with fried onions, fresh coriander cilan, then layered with fried onions, fresh coriander cilan, then layered with fried onions, fresh coriander cilan, Chicken marinated in a spiced yoghurt is placed in a large pot, then layered with fried onions, fresh coriander cilan, then layered with fried onions, fresh coriander cilan, then layered with fried onions, fresh coriander cilan, Chicken marinated in a spiced yoghurt is placed in a large pot, then layered with fried onions, fresh coriander cilan.Chicken marinated in a spiced yoghurt is placed in a large pot, then layered with fried onions, fresh coriander cilan, then layered with fried onions, fresh coriander cilan, then layered with fried onions, fresh coriander cilan, Chicken marinated in a spiced yoghurt is placed in a large pot, then layered with fried onions, fresh coriander cilan, then layered with fried onions, fresh coriander cilan, then layered with fried onions, fresh coriander cilan, Chicken marinated in a spiced yoghurt is placed in a large pot, then layered with fried onions, fresh coriander cilan.Chicken marinated in a spiced yoghurt is placed in a large pot, then layered with fried onions, fresh coriander cilan, then layered with fried onions, fresh coriander cilan, then layered with fried onions, fresh coriander cilan, Chicken marinated in a spiced yoghurt is placed in a large pot, then layered with fried onions, fresh coriander cilan, then layered with fried onions, fresh coriander cilan, then layered with fried onions, fresh coriander cilan, Chicken marinated in a spiced yoghurt is placed in a large pot, then layered with fried onions, fresh coriander cilan.Chicken marinated in a spiced yoghurt is placed in a large pot, then layered with fried onions, fresh coriander cilan, then layered with fried onions, fresh coriander cilan, then layered with fried onions, fresh coriander cilan, Chicken marinated in a spiced yoghurt is placed in a large pot, then layered with fried onions, fresh coriander cilan, then layered with fried onions, fresh coriander cilan, then layered with fried onions, fresh coriander cilan, Chicken marinated in a spiced yoghurt is placed in a large pot, then layered with fried onions, fresh coriander cilan.Chicken marinated in a spiced yoghurt is placed in a large pot, then layered with fried onions, fresh coriander cilan, then layered with fried onions, fresh coriander cilan, then layered with fried onions, fresh coriander cilan, Chicken marinated in a spiced yoghurt is placed in a large pot, then layered with fried onions, fresh coriander cilan, then layered with fried onions, fresh coriander cilan, then layered with fried onions, fresh coriander cilan, Chicken marinated in a spiced yoghurt is placed in a large pot, then layered with fried onions, fresh coriander cilan. Chicken marinated in a spiced yoghurt is placed in a large pot, then layered with fried onions, fresh coriander cilan, then layered with fried onions, fresh coriander cilan, then layered with fried onions, fresh coriander cilan, Chicken marinated in a spiced yoghurt is placed in a large pot, then layered with fried onions, fresh coriander cilan, then layered with fried onions, fresh coriander cilan, then layered with fried onions, fresh coriander cilan, Chicken marinated in a spiced yoghurt is placed in a large pot, then layered with fried onions, fresh coriander cilan. Chicken marinated in a spiced yoghurt is placed in a large pot, then layered with fried onions, fresh coriander cilan, then layered with fried onions, fresh coriander cilan, then layered with fried onions, fresh coriander cilan, Chicken marinated in a spiced yoghurt is placed in a large pot, then layered with fried onions, fresh coriander cilan, then layered with fried onions, fresh coriander cilan, then layered with fried onions, fresh coriander cilan, Chicken marinated in a spiced yoghurt is placed in a large pot, then layered with fried onions, fresh coriander cilan. Chicken marinated in a spiced yoghurt is placed in a large pot, then layered with fried onions, fresh coriander cilan, then layered with fried onions, fresh coriander cilan, then layered with fried onions, fresh coriander cilan, Chicken marinated in a spiced yoghurt is placed in a large pot, then layered with fried onions, fresh coriander cilan, then layered with fried onions, fresh coriander cilan, then layered with fried onions, fresh coriander cilan, Chicken marinated in a spiced yoghurt is placed in a large pot, then layered with fried onions, fresh coriander cilan'),
+                  child: ExpandableTextWidget(
+                    text: '${product.description}',
+                  ),
                 ),
               ],
             ),
@@ -84,7 +97,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                   iconColor: Colors.white,
                 ),
                 BigText(
-                  text: '\$12.88 X 0',
+                  text: '\$${product.price} X 0',
                   color: AppColors.mainBlackColor,
                   size: Dimensions.font26,
                 ),

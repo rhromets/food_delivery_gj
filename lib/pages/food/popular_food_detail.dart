@@ -1,15 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery_gj/controllers/popular_product_controller.dart';
 import 'package:food_delivery_gj/pages/home/main_food_page.dart';
+import 'package:food_delivery_gj/utils/app_constants.dart';
 import 'package:food_delivery_gj/utils/colors.dart';
 import 'package:food_delivery_gj/utils/dimentions.dart';
 import 'package:food_delivery_gj/widgets/widgets.dart';
 import 'package:get/get.dart';
 
 class PopularFoodDetail extends StatelessWidget {
-  const PopularFoodDetail({super.key});
+  final int pageId;
+
+  const PopularFoodDetail({
+    super.key,
+    required this.pageId,
+  });
 
   @override
   Widget build(BuildContext context) {
+    var product =
+        Get.find<PopularProductController>().popularProducList[pageId];
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
@@ -20,10 +30,12 @@ class PopularFoodDetail extends StatelessWidget {
             child: Container(
               width: double.maxFinite,
               height: Dimensions.popularFoodImgSize,
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 image: DecorationImage(
                   fit: BoxFit.cover,
-                  image: AssetImage('assets/images/food0.png'),
+                  image: NetworkImage(
+                    '${AppConstants.BASE_URL}${AppConstants.UPLOAD_URL}${product.img}',
+                  ),
                 ),
               ),
             ),
@@ -62,15 +74,14 @@ class PopularFoodDetail extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const AppColumn(text: 'Chinese Side'),
+                  AppColumn(text: '${product.name}'),
                   SizedBox(height: Dimensions.height20),
                   const BigText(text: 'Introduce'),
                   SizedBox(height: Dimensions.height20),
-                  const Expanded(
+                  Expanded(
                     child: SingleChildScrollView(
-                      child: ExpandableTextWidget(
-                          text:
-                              'Chicken marinated in a spiced yoghurt is placed in a large pot, then layered with fried onions, fresh coriander cilan, then layered with fried onions, fresh coriander cilan, then layered with fried onions, fresh coriander cilan, Chicken marinated in a spiced yoghurt is placed in a large pot, then layered with fried onions, fresh coriander cilan, then layered with fried onions, fresh coriander cilan, then layered with fried onions, fresh coriander cilan, Chicken marinated in a spiced yoghurt is placed in a large pot, then layered with fried onions, fresh coriander cilan'),
+                      child:
+                          ExpandableTextWidget(text: '${product.description}'),
                     ),
                   ),
                 ],
@@ -123,8 +134,8 @@ class PopularFoodDetail extends StatelessWidget {
                 borderRadius: BorderRadius.circular(Dimensions.radius20),
                 color: AppColors.mainColor,
               ),
-              child: const BigText(
-                text: '\$10 | Add To Cart',
+              child: BigText(
+                text: '\$${product.price} | Add To Cart',
                 color: Colors.white,
               ),
             ),
