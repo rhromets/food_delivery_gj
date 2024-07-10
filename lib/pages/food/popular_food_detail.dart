@@ -75,7 +75,7 @@ class PopularFoodDetail extends StatelessWidget {
                       Get.find<PopularProductController>().totalItems >= 1
                           ? Positioned(
                               top: 3,
-                              right: 6,
+                              right: 3,
                               child: BigText(
                                 text: Get.find<PopularProductController>()
                                     .totalItems
@@ -172,19 +172,19 @@ class PopularFoodDetail extends StatelessWidget {
                   ],
                 ),
               ),
-              Container(
-                padding: EdgeInsets.symmetric(
-                  vertical: Dimensions.height10 + 6,
-                  horizontal: Dimensions.width20,
-                ),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(Dimensions.radius20),
-                  color: AppColors.mainColor,
-                ),
-                child: GestureDetector(
-                  onTap: () {
-                    popularProduct.addItem(product);
-                  },
+              GestureDetector(
+                onTap: () {
+                  popularProduct.addItem(product);
+                },
+                child: Container(
+                  padding: EdgeInsets.symmetric(
+                    vertical: Dimensions.height10 + 6,
+                    horizontal: Dimensions.width20,
+                  ),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(Dimensions.radius20),
+                    color: AppColors.mainColor,
+                  ),
                   child: BigText(
                     text: '\$${product.price} | Add To Cart',
                     color: Colors.white,
