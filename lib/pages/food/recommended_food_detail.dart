@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:food_delivery_gj/controllers/cart_controller.dart';
 import 'package:food_delivery_gj/controllers/popular_product_controller.dart';
 import 'package:food_delivery_gj/controllers/recommended_product_controller.dart';
-import 'package:food_delivery_gj/pages/cart/cart_page.dart';
 import 'package:food_delivery_gj/routes/route_helper.dart';
 import 'package:food_delivery_gj/utils/app_constants.dart';
 import 'package:food_delivery_gj/utils/colors.dart';
@@ -20,7 +19,7 @@ class RecommendedFoodDetail extends StatelessWidget {
         Get.find<RecommendedProductController>().recommendedProductList[pageId];
     Get.find<PopularProductController>()
         .initProduct(product, Get.find<CartController>());
-        
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: CustomScrollView(
@@ -38,43 +37,42 @@ class RecommendedFoodDetail extends StatelessWidget {
                   child: const AppIcon(icon: Icons.clear),
                 ),
                 GetBuilder<PopularProductController>(builder: (controller) {
-                  return Stack(
-                    children: [
-                      GestureDetector(
-                          onTap: () {
-                            Get.to(() => const CartPage());
-                          },
-                          child: const AppIcon(
-                              icon: Icons.shopping_cart_outlined)),
-                      Get.find<PopularProductController>().totalItems >= 1
-                          ? const Positioned(
-                              top: 0,
-                              right: 0,
-                              child: AppIcon(
-                                icon: Icons.circle,
-                                size: 20,
-                                iconColor: Colors.transparent,
-                                backgroundColor: AppColors.mainColor,
-                              ),
-                            )
-                          : const SizedBox(),
-                      Get.find<PopularProductController>().totalItems >= 1
-                          ? Positioned(
-                              top: 3,
-                              right: 3,
-                              child: BigText(
-                                text: Get.find<PopularProductController>()
-                                    .totalItems
-                                    .toString(),
-                                size: 12,
-                                color: Colors.white,
-                              ),
-                            )
-                          : const SizedBox(),
-                    ],
+                  return GestureDetector(
+                    onTap: () {
+                      if (controller.totalItems >= 1) {
+                        Get.toNamed(RouteHelper.getCartPage());
+                      }
+                    },
+                    child: Stack(
+                      children: [
+                        const AppIcon(icon: Icons.shopping_cart_outlined),
+                        controller.totalItems >= 1
+                            ? const Positioned(
+                                top: 0,
+                                right: 0,
+                                child: AppIcon(
+                                  icon: Icons.circle,
+                                  size: 20,
+                                  iconColor: Colors.transparent,
+                                  backgroundColor: AppColors.mainColor,
+                                ),
+                              )
+                            : const SizedBox(),
+                        controller.totalItems >= 1
+                            ? Positioned(
+                                top: 3,
+                                right: 3,
+                                child: BigText(
+                                  text: controller.totalItems.toString(),
+                                  size: 12,
+                                  color: Colors.white,
+                                ),
+                              )
+                            : const SizedBox(),
+                      ],
+                    ),
                   );
                 }),
-              
               ],
             ),
             bottom: PreferredSize(
