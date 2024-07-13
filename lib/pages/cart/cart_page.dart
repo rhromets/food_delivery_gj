@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery_gj/controllers/cart_controller.dart';
+import 'package:food_delivery_gj/models/cart_model.dart';
 import 'package:food_delivery_gj/routes/route_helper.dart';
 import 'package:food_delivery_gj/utils/app_constants.dart';
 import 'package:food_delivery_gj/utils/colors.dart';
@@ -61,9 +62,10 @@ class CartPage extends StatelessWidget {
                 removeTop: true,
                 child: GetBuilder<CartController>(
                   builder: (cartController) {
+                    List<CartModel> cartList = cartController.getItems;
                     return ListView.builder(
                         physics: const BouncingScrollPhysics(),
-                        itemCount: cartController.getItems.length,
+                        itemCount: cartList.length,
                         itemBuilder: (_, index) {
                           return SizedBox(
                             height: Dimensions.height20 * 5,
@@ -129,7 +131,10 @@ class CartPage extends StatelessWidget {
                                                 children: [
                                                   GestureDetector(
                                                     onTap: () {
-                                                      // popularProduct.setQuantity(false);
+                                                      cartController.addItem(
+                                                          cartList[index]
+                                                              .product!,
+                                                          -1);
                                                     },
                                                     child: const Icon(
                                                         Icons.remove,
@@ -140,15 +145,19 @@ class CartPage extends StatelessWidget {
                                                       width:
                                                           Dimensions.width10 /
                                                               2),
-                                                  const BigText(text: '0'),
-                                                  // BigText(text: '${popularProduct.inCartItems}'),
+                                                  BigText(
+                                                      text:
+                                                          '${cartList[index].quantity}'),
                                                   SizedBox(
                                                       width:
                                                           Dimensions.width10 /
                                                               2),
                                                   GestureDetector(
                                                     onTap: () {
-                                                      // popularProduct.setQuantity(true);
+                                                      cartController.addItem(
+                                                          cartList[index]
+                                                              .product!,
+                                                          1);
                                                     },
                                                     child: const Icon(Icons.add,
                                                         color: AppColors
