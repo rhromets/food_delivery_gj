@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery_gj/controllers/cart_controller.dart';
+import 'package:food_delivery_gj/controllers/popular_product_controller.dart';
+import 'package:food_delivery_gj/controllers/recommended_product_controller.dart';
 import 'package:food_delivery_gj/models/cart_model.dart';
 import 'package:food_delivery_gj/routes/route_helper.dart';
 import 'package:food_delivery_gj/utils/app_constants.dart';
@@ -72,20 +74,40 @@ class CartPage extends StatelessWidget {
                             width: double.maxFinite,
                             child: Row(
                               children: [
-                                Container(
-                                  width: Dimensions.height20 * 5,
-                                  height: Dimensions.height20 * 5,
-                                  margin: EdgeInsets.symmetric(
-                                      vertical: Dimensions.height10 / 2),
-                                  decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                      fit: BoxFit.cover,
-                                      image: NetworkImage(
-                                          '${AppConstants.BASE_URL}${AppConstants.UPLOAD_URL}${cartController.getItems[index].img}'),
+                                GestureDetector(
+                                  onTap: () {
+                                    var popularIndex =
+                                        Get.find<PopularProductController>()
+                                            .popularProducList
+                                            .indexOf(cartList[index].product!);
+                                    if (popularIndex >= 0) {
+                                      Get.toNamed(RouteHelper.getPopularFood(
+                                          popularIndex, 'cartPage'));
+                                    } else {
+                                      var recommendedIndex = Get.find<
+                                              RecommendedProductController>()
+                                          .recommendedProductList
+                                          .indexOf(cartList[index].product!);
+                                      Get.toNamed(
+                                          RouteHelper.getRecommendedFood(
+                                              recommendedIndex, 'cartPage'));
+                                    }
+                                  },
+                                  child: Container(
+                                    width: Dimensions.height20 * 5,
+                                    height: Dimensions.height20 * 5,
+                                    margin: EdgeInsets.symmetric(
+                                        vertical: Dimensions.height10 / 2),
+                                    decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                        fit: BoxFit.cover,
+                                        image: NetworkImage(
+                                            '${AppConstants.BASE_URL}${AppConstants.UPLOAD_URL}${cartController.getItems[index].img}'),
+                                      ),
+                                      borderRadius: BorderRadius.circular(
+                                          Dimensions.radius20),
+                                      color: Colors.white,
                                     ),
-                                    borderRadius: BorderRadius.circular(
-                                        Dimensions.radius20),
-                                    color: Colors.white,
                                   ),
                                 ),
                                 SizedBox(
