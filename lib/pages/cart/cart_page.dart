@@ -124,7 +124,7 @@ class CartPage extends StatelessWidget {
                                       children: [
                                         BigText(
                                           text:
-                                              '${cartController.getItems[index]}',
+                                              '${cartController.getItems[index].name}',
                                           color: Colors.black54,
                                         ),
                                         const SmallText(text: 'Spicy'),
