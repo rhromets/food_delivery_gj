@@ -16,14 +16,19 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.find<PopularProductController>().getPopularProductList();
-    Get.find<RecommendedProductController>().getRecommendedProductList();
-
-    return GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Food Delivery App',
-      initialRoute: RouteHelper.getInitial(),
-      getPages: RouteHelper.routes,
+    return GetBuilder<PopularProductController>(
+      builder: (_) {
+        return GetBuilder<RecommendedProductController>(
+          builder: (_) {
+            return GetMaterialApp(
+              debugShowCheckedModeBanner: false,
+              title: 'Food Delivery App',
+              initialRoute: RouteHelper.getSplashPage(),
+              getPages: RouteHelper.routes,
+            );
+          },
+        );
+      },
     );
   }
 }
