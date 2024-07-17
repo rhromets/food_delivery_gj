@@ -8,7 +8,7 @@ import 'package:get/get.dart';
 class CartController extends GetxController {
   final CartRepo cartRepo;
   CartController({required this.cartRepo});
-  final Map<int, CartModel> _items = {};
+  Map<int, CartModel> _items = {};
 
   Map<int, CartModel> get items => _items;
 
@@ -118,5 +118,15 @@ class CartController extends GetxController {
       _items.putIfAbsent(
           storageItems[index].product!.id!, () => storageItems[index]);
     }
+  }
+
+  void addToHistory() {
+    cartRepo.addToCartHistoryList();
+    clear();
+  }
+
+  void clear() {
+    _items = {};
+    update();
   }
 }
