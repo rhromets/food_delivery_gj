@@ -40,8 +40,8 @@ class CartHistory extends StatelessWidget {
           Container(
             color: AppColors.mainColor,
             width: double.maxFinite,
-            height: 100,
-            padding: const EdgeInsets.only(top: 45),
+            height: Dimensions.height10 * 10,
+            padding: EdgeInsets.only(top: Dimensions.height45),
             child: const Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
@@ -68,7 +68,7 @@ class CartHistory extends StatelessWidget {
                   children: [
                     for (int i = 0; i < itemsPerOrder.length; i++)
                       Container(
-                        height: 130,
+                        height: Dimensions.height45 * 3,
                         margin: EdgeInsets.only(bottom: Dimensions.height20),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -117,7 +117,7 @@ class CartHistory extends StatelessWidget {
                                   }),
                                 ),
                                 SizedBox(
-                                  height: 90,
+                                  height: Dimensions.height30 * 3,
                                   child: Column(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceEvenly,
