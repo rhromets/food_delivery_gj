@@ -26,11 +26,16 @@ class CartPage extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                AppIcon(
-                  icon: Icons.arrow_back_ios,
-                  iconColor: Colors.white,
-                  backgroundColor: AppColors.mainColor,
-                  iconSize: Dimensions.iconSize24,
+                GestureDetector(
+                  onTap: () {
+                    Get.back();
+                  },
+                  child: const AppIcon(
+                    icon: Icons.arrow_back_ios,
+                    offset: Offset(3, 0),
+                    iconColor: Colors.white,
+                    backgroundColor: AppColors.mainColor,
+                  ),
                 ),
                 SizedBox(width: Dimensions.width20 * 5),
                 GestureDetector(
@@ -41,14 +46,19 @@ class CartPage extends StatelessWidget {
                     icon: Icons.home_outlined,
                     iconColor: Colors.white,
                     backgroundColor: AppColors.mainColor,
-                    iconSize: Dimensions.iconSize24,
+                    iconSize: Dimensions.iconSize24 / 5 * 4,
                   ),
                 ),
-                AppIcon(
-                  icon: Icons.shopping_cart_outlined,
-                  iconColor: Colors.white,
-                  backgroundColor: AppColors.mainColor,
-                  iconSize: Dimensions.iconSize24,
+                GestureDetector(
+                  onTap: () {
+                    Get.toNamed(RouteHelper.getCartHistoryPage());
+                  },
+                  child: AppIcon(
+                    icon: Icons.archive_outlined,
+                    iconColor: Colors.white,
+                    backgroundColor: AppColors.mainColor,
+                    iconSize: Dimensions.iconSize24 / 5 * 4,
+                  ),
                 ),
               ],
             ),

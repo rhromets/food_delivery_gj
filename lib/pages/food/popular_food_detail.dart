@@ -60,7 +60,10 @@ class PopularFoodDetail extends StatelessWidget {
                       Get.toNamed(RouteHelper.getInitial());
                     }
                   },
-                  child: const AppIcon(icon: Icons.arrow_back_ios),
+                  child: const AppIcon(
+                    icon: Icons.arrow_back_ios,
+                    offset: Offset(3, 0),
+                  ),
                 ),
                 GetBuilder<PopularProductController>(builder: (controller) {
                   return GestureDetector(
@@ -84,8 +87,8 @@ class PopularFoodDetail extends StatelessWidget {
                             : const SizedBox(),
                         controller.totalItems >= 1
                             ? Positioned(
-                                top: 3,
-                                right: 3,
+                                top: 2,
+                                right: controller.totalItems > 9 ? 4 : 6,
                                 child: BigText(
                                   text: Get.find<PopularProductController>()
                                       .totalItems

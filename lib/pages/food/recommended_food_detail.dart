@@ -68,8 +68,8 @@ class RecommendedFoodDetail extends StatelessWidget {
                             : const SizedBox(),
                         controller.totalItems >= 1
                             ? Positioned(
-                                top: 3,
-                                right: 3,
+                                top: 2,
+                                right: controller.totalItems > 9 ? 4 : 6,
                                 child: BigText(
                                   text: controller.totalItems.toString(),
                                   size: 12,

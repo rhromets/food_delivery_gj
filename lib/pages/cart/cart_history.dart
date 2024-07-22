@@ -49,16 +49,25 @@ class CartHistory extends StatelessWidget {
           Container(
             color: AppColors.mainColor,
             width: double.maxFinite,
-            height: Dimensions.height10 * 10,
-            padding: EdgeInsets.only(top: Dimensions.height45),
-            child: const Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+            height: Dimensions.height10 * 11,
+            padding: EdgeInsets.only(
+              top: Dimensions.height45 + Dimensions.height10,
+              right: Dimensions.width20,
+              left: Dimensions.width20,
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                BigText(text: 'Cart History', color: Colors.white),
-                AppIcon(
-                  icon: Icons.shopping_cart_outlined,
-                  iconColor: Colors.white,
-                  backgroundColor: AppColors.yellowColor,
+                const BigText(text: 'Cart History', color: Colors.white),
+                GestureDetector(
+                  onTap: () {
+                    Get.toNamed(RouteHelper.getCartPage());
+                  },
+                  child: const AppIcon(
+                    icon: Icons.shopping_cart_outlined,
+                    iconColor: Colors.white,
+                    backgroundColor: AppColors.yellowColor,
+                  ),
                 ),
               ],
             ),
