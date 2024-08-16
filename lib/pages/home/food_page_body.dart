@@ -86,7 +86,9 @@ class _FoodPageBodyState extends State<FoodPageBody> {
         SizedBox(height: Dimensions.height30),
         Container(
           margin: EdgeInsets.only(
-              left: Dimensions.width30, bottom: Dimensions.width20),
+            left: Dimensions.width30,
+            bottom: 15,
+          ),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
@@ -112,6 +114,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
             builder: (recommendedProducts) {
           return recommendedProducts.isLoaded
               ? ListView.builder(
+                  padding: const EdgeInsets.only(top: 8),
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
                   itemCount: recommendedProducts.recommendedProductList.length,
