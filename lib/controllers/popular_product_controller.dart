@@ -5,6 +5,7 @@ import 'package:food_delivery_gj/models/cart_model.dart';
 import 'package:food_delivery_gj/models/products_model.dart';
 import 'package:food_delivery_gj/utils/colors.dart';
 import 'package:get/get.dart';
+import 'dart:async';
 
 class PopularProductController extends GetxController {
   final PopularProductRepo popularProductRepo;
@@ -20,6 +21,8 @@ class PopularProductController extends GetxController {
   int get quantity => _quantity;
   int _inCartItems = 0;
   int get inCartItems => _inCartItems + _quantity;
+
+  Timer? _snackbarTimer;
 
   Future<void> getPopularProductList() async {
     Response response = await popularProductRepo.getPopularProductList();
@@ -42,27 +45,43 @@ class PopularProductController extends GetxController {
 
   int checkQuantity(int quantity) {
     if ((_inCartItems + quantity) < 0) {
-      Get.snackbar(
-        'Item count',
-        'You can\'t reduce more',
-        backgroundColor: AppColors.mainColor,
-        colorText: Colors.white,
+      _showSnackbarOnce(
+        title: 'Item count',
+        text: 'You can\'t reduce more',
       );
+      
       if (_inCartItems > 0) {
         _quantity = -_inCartItems;
         return _quantity;
       }
       return 0;
     } else if ((_inCartItems + quantity) > 20) {
-      Get.snackbar(
-        'Item count',
-        'You can\'t add more',
-        backgroundColor: AppColors.mainColor,
-        colorText: Colors.white,
+      _showSnackbarOnce(
+        title: 'Item count',
+        text: 'You can\'t add more',
       );
       return 20;
     } else {
       return quantity;
+    }
+  }
+
+  void _showSnackbarOnce({
+    required String title,
+    required String text,
+  }) {
+    if (_snackbarTimer == null || !_snackbarTimer!.isActive) {
+      Get.snackbar(
+        title,
+        text,
+        backgroundColor: AppColors.mainColor,
+        colorText: Colors.white,
+        duration: const Duration(seconds: 2),
+      );
+
+      _snackbarTimer = Timer(const Duration(seconds: 3), () {
+        _snackbarTimer = null;
+      });
     }
   }
 
